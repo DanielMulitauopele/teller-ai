@@ -9,5 +9,9 @@ def home(request):
     headers = {'authorization': f'Bearer {config.twitter_token}'}
     response = requests.get(url, headers=headers)
     data = response.json()
+    statuses = data['statuses']
+    tweets = []
+    for status_info in statuses:
+        tweets.append(status_info['text'])
 
-    return JsonResponse(data, safe=False)
+    return JsonResponse(tweets, safe=False)
