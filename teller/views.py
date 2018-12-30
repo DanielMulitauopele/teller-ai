@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from watson_developer_cloud import ToneAnalyzerV3
-import re
 import requests
 import config
 
 def home(request):
     query = 'bitcoin'
-    url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en'
+    url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
     response = requests.get(url, headers=headers)
     data = response.json()
@@ -30,6 +29,7 @@ def home(request):
             tweet = sentance.replace("#", "")
 
         cleaned_tweets.append(tweet)
+    tweet_document = ' '.join(cleaned_tweets)
 
     tone_analyzer = ToneAnalyzerV3(
         version='2017-09-21',
@@ -38,13 +38,7 @@ def home(request):
     )
 
     tone_analysis = tone_analyzer.tone(
-        {'text': cleaned_tweets[0]},
-        'application/json'
+        {'text': tweet_document},
+        'application/json',
     ).get_result()
     return JsonResponse(tone_analysis, safe=False)
-
-
-
-
-    #
-    # return JsonResponse(tweets, safe=False)
