@@ -31,24 +31,17 @@ def home(request):
 
         cleaned_tweets.append(tweet)
 
+    tone_analyzer = ToneAnalyzerV3(
+        version='2017-09-21',
+        iam_apikey='Si1t19DXhzGFq3wgS2rSwvyncuQ6fzX8jwdoe28qWW1s',
+        url='https://gateway.watsonplatform.net/tone-analyzer/api'
+    )
 
-
-
-
-
-    # tone_analyzer = ToneAnalyzerV3(
-    #     version='2017-09-21',
-    #     iam_apikey='Si1t19DXhzGFq3wgS2rSwvyncuQ6fzX8jwdoe28qWW1s',
-    #     url='https://gateway.watsonplatform.net/tone-analyzer/api'
-    # )
-    #
-    # # text = 'I am so in love with the Watson API, although it was a long and arduous process getting this thing established. I wish the documentation was more nuanced, especially in regards to junior developers. Its frustrating slogging through unhelpful docs.'
-    #
-    # tone_analysis = tone_analyzer.tone(
-    #     {'text': text},
-    #     'application/json'
-    # ).get_result()
-    return JsonResponse(cleaned_tweets, safe=False)
+    tone_analysis = tone_analyzer.tone(
+        {'text': cleaned_tweets[0]},
+        'application/json'
+    ).get_result()
+    return JsonResponse(tone_analysis, safe=False)
 
 
 
