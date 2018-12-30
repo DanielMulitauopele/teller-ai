@@ -12,6 +12,9 @@ def home(request):
     data = response.json()
     statuses = data['statuses']
     tweets = []
+    for status_info in statuses:
+        tweets.append(status_info['text'])
+    text = ' '.join(tweets)
 
     tone_analyzer = ToneAnalyzerV3(
         version='2017-09-21',
@@ -19,18 +22,16 @@ def home(request):
         url='https://gateway.watsonplatform.net/tone-analyzer/api'
     )
 
-    text = 'I am so in love with the Watson API, although it was a long and arduous process getting this thing established. I wish the documentation was more nuanced, especially in regards to junior developers. Its frustrating slogging through unhelpful docs.'
+    # text = 'I am so in love with the Watson API, although it was a long and arduous process getting this thing established. I wish the documentation was more nuanced, especially in regards to junior developers. Its frustrating slogging through unhelpful docs.'
 
     tone_analysis = tone_analyzer.tone(
         {'text': text},
         'application/json'
     ).get_result()
-    return JsonResponse(tone_analysis, safe=False)
+    return JsonResponse(text, safe=False)
 
 
 
 
-    # for status_info in statuses:
-    #     tweets.append(status_info['text'])
     #
     # return JsonResponse(tweets, safe=False)
