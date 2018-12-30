@@ -16,16 +16,19 @@ def home(request):
     for status_info in statuses:
         tweets.append(status_info['text'])
 
-    # for tweet in tweets:
-    tweet = "we're they're our I'm I'll would've could've should've"
+    for tweet in tweets:
+    # tweet = "we're they're our I'm I'll would've could've should've"
     # CLEAN TWEET CONTRACTIONS
-    contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
-    poss_contractions = tweet.replace("'", " '").split(" ")
-    for poss_contraction in poss_contractions:
-        non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
+        contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
+        poss_contractions = tweet.replace("'", " '").split(" ")
+        for poss_contraction in poss_contractions:
+            non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
 
-    
-    text = ' '.join(non_contraction)
+            sentance = ' '.join(non_contraction)
+            # CLEAN HASHTAGS
+            tweet = sentance.replace("#", "")
+
+
 
 
 
@@ -41,7 +44,7 @@ def home(request):
     #     {'text': text},
     #     'application/json'
     # ).get_result()
-    return JsonResponse(text, safe=False)
+    return JsonResponse(tweets, safe=False)
 
 
 
