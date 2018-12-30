@@ -16,17 +16,21 @@ def home(request):
     for status_info in statuses:
         tweets.append(status_info['text'])
 
+    cleaned_tweets = []
     for tweet in tweets:
-    # tweet = "we're they're our I'm I'll would've could've should've"
     # CLEAN TWEET CONTRACTIONS
         contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
         poss_contractions = tweet.replace("'", " '").split(" ")
         for poss_contraction in poss_contractions:
             non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
 
-            sentance = ' '.join(non_contraction)
+            # CLEAN @TWITTERHANDLE & URLS
+            sentance = " ".join([word for word in non_contraction if 'http' not in word and '@' not in word])
             # CLEAN HASHTAGS
             tweet = sentance.replace("#", "")
+
+        cleaned_tweets.append(tweet)
+
 
 
 
@@ -44,7 +48,7 @@ def home(request):
     #     {'text': text},
     #     'application/json'
     # ).get_result()
-    return JsonResponse(tweets, safe=False)
+    return JsonResponse(cleaned_tweets, safe=False)
 
 
 
