@@ -1,41 +1,41 @@
-- [_] Wrote Tests
-- [_] Implemented
-- [_] Reviewed
+- [ ] Wrote Tests
+- [ ] Implemented
+- [ ] Reviewed
 
-# Neccesary checkmarks:
+## Necessary checkmarks
 
-- [_] All Tests are Passing
+- [ ] All Tests are Passing
 
-- [_] The code will run locally
+- [ ] The code will run locally
 
 ## Type of change
 
-- [_] New feature
-- [_] Bug Fix
+- [ ] New feature
+- [ ] Bug Fix
 
-# Description:
+## Description
 
-# Implements:
+### Implements
 
-# Fixes
+### Fixes
 
-# Check the correct boxes
+## Check the correct boxes
 
-- [_]This broke nothing
-- [_] This broke some stuff
-- [_] This broke everything
+- [ ] This broke nothing
+- [ ] This broke some stuff
+- [ ] This broke everything
 
-# Testing Changes
+## Testing Changes
 
-- [_] No Tests have been changed
-- [_] Some Tests have been changed
-- [_] All of the Tests have been changed(Please describe what in the world happened)
+- [ ] No Tests have been changed
+- [ ] Some Tests have been changed
+- [ ] All of the Tests have been changed(Please describe what in the world happened)
 
-# Checklist:
+## Checklist
 
-- [_] My code has no commented out code (explanatory comments are fine)
-- [_] I have reviewed my code
-- [_] I have commented my code, particularly in hard-to-understand areas
-- [_] I have fully tested my code
+- [ ] My code has no commented out code (explanatory comments are fine)
+- [ ] I have reviewed my code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have fully tested my code
 
-# Please Include a link to a gif of your feelings about this branch
+## Please Include a link to a gif of your feelings about this branch
