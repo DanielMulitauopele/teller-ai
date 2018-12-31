@@ -10,6 +10,8 @@ class WelcomePageView(TemplateView):
         return render(request, 'welcome.html')
 
 def watson_analysis(request):
+    x = request.GET.get('coin') # Either returns the query param value, or returns "None"
+    print(x)
     query = 'bitcoin'
     url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
