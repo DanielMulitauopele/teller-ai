@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import TemplateView
+from django.contrib import messages
 from watson_developer_cloud import ToneAnalyzerV3
 import requests
 import config
@@ -9,10 +10,7 @@ class WelcomePageView(TemplateView):
     def get(self, request):
         return render(request, 'welcome.html')
 
-def watson_analysis(request):
-    x = request.GET.get('coin') # Either returns the query param value, or returns "None"
-    print(x)
-    query = 'bitcoin'
+def retrieve_tweets(query):
     url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
     response = requests.get(url, headers=headers)
@@ -21,6 +19,19 @@ def watson_analysis(request):
     tweets = []
     for status_info in statuses:
         tweets.append(status_info['text'])
+    return tweets
+
+def watson_analysis(request):
+    coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
+    tweets = retrieve_tweets(coin)
+    # url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
+    # headers = {'authorization': f'Bearer {config.twitter_token}'}
+    # response = requests.get(url, headers=headers)
+    # data = response.json()
+    # statuses = data['statuses']
+    # tweets = []
+    # for status_info in statuses:
+    #     tweets.append(status_info['text'])
 
     cleaned_tweets = []
     for tweet in tweets:
