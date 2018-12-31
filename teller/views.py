@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.generic import TemplateView
 from watson_developer_cloud import ToneAnalyzerV3
 import requests
 import config
 
-def home(request):
+class WelcomePageView(TemplateView):
+    def get(self, request):
+        return render(request, 'welcome.html')
+
+def watson_analysis(request):
     query = 'bitcoin'
     url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
