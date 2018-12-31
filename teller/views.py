@@ -49,20 +49,22 @@ def clean_for_watson_analysis(tweets):
 def create_document(tweets):
     return ' '.join(tweets)
 
-# def watson_analysis(request):
-#     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
-#     tweet_document = prep_tweets(coin)
-#
-#     tone_analyzer = ToneAnalyzerV3(
-#         version='2017-09-21',
-#         iam_apikey=f'{config.watson_key}',
-#         url='https://gateway.watsonplatform.net/tone-analyzer/api'
-#     )
-#
-#     tone_analysis = tone_analyzer.tone(
-#         {'text': tweet_document},
-#         'application/json',
-#     ).get_result()
 
-    # return JsonResponse(tone_analysis, safe=False)
-    # return JsonResponse(tweet_document, safe=False)
+def analyze_tone_via_watson(document):
+    tone_analyzer = ToneAnalyzerV3(
+                        version='2017-09-21',
+                        iam_apikey=f'{config.watson_key}',
+                        url='https://gateway.watsonplatform.net/tone-analyzer/api'
+                        )
+    result = tone_analyzer.tone(
+                {'text': document},
+                'application/json',
+            ).get_result()
+    return result
+
+def watson_analysis(request):
+    coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
+    tweet_document = prep_tweets(coin)
+    tone_analysis = analyze_tone_via_watson(tweet_document)
+
+    return JsonResponse(tone_analysis, safe=False)
