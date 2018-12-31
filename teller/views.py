@@ -22,7 +22,7 @@ def analyze_tone_via_watson(document):
             ).get_result()
     return result
 
-def watson_analysis(request):
+def get_watson_analysis(request):
     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
     tweet_document = tweet_prep.prep_for_watson(coin)
     tone_analysis = analyze_tone_via_watson(tweet_document)
