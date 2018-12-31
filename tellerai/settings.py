@@ -37,7 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'teller'
+    'teller',
+    'django_nose'
+]
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'teller' app
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=teller',
 ]
 
 MIDDLEWARE = [
