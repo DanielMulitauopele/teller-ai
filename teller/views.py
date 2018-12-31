@@ -33,7 +33,7 @@ def home(request):
 
     tone_analyzer = ToneAnalyzerV3(
         version='2017-09-21',
-        iam_apikey='Si1t19DXhzGFq3wgS2rSwvyncuQ6fzX8jwdoe28qWW1s',
+        iam_apikey=f'{config.watson_key}',
         url='https://gateway.watsonplatform.net/tone-analyzer/api'
     )
 
