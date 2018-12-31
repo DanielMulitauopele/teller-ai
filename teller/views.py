@@ -10,6 +10,11 @@ class WelcomePageView(TemplateView):
     def get(self, request):
         return render(request, 'welcome.html')
 
+def prep_tweets(coin):
+    tweets = retrieve_tweets(coin)
+    cleaned_tweets = clean_for_watson_analysis(tweets)
+    tweet_document = create_document(cleaned_tweets)    
+
 def retrieve_tweets(query):
     url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
@@ -43,9 +48,7 @@ def create_document(tweets):
 
 def watson_analysis(request):
     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
-    tweets = retrieve_tweets(coin)
-    cleaned_tweets = clean_for_watson_analysis(tweets)
-    tweet_document = create_document(cleaned_tweets)
+    prep_tweets(coin)
 
     # tone_analyzer = ToneAnalyzerV3(
     #     version='2017-09-21',
