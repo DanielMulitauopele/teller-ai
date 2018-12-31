@@ -11,23 +11,26 @@ class WelcomePageView(TemplateView):
         return render(request, 'welcome.html')
 
 def prep_tweets(coin):
-    tweets = retrieve_tweets(coin)
+    data = retrieve_twitter_data(coin)
+    tweets = retrieve_raw_tweets(data)
     cleaned_tweets = clean_for_watson_analysis(tweets)
-    tweet_document = create_document(cleaned_tweets)    
+    return create_document(cleaned_tweets)
 
-def retrieve_tweets(query):
+def retrieve_twitter_data(query):
     url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
     headers = {'authorization': f'Bearer {config.twitter_token}'}
     response = requests.get(url, headers=headers)
     data = response.json()
-    statuses = data['statuses']
-    tweets = []
+    return data['statuses']
+
+def retrieve_raw_tweets(statuses):
+    raw_tweets = []
     for status_info in statuses:
-        tweets.append(status_info['text'])
-    return tweets
+        raw_tweets.append(status_info['text'])
+    return raw_tweets
 
 def clean_for_watson_analysis(tweets):
-    cleaned_tweets = []
+    clean_tweets = []
     for tweet in tweets:
     # CLEAN TWEET CONTRACTIONS
         contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
@@ -40,26 +43,26 @@ def clean_for_watson_analysis(tweets):
             # CLEAN HASHTAGS
             tweet = sentance.replace("#", "")
 
-        cleaned_tweets.append(tweet)
-    return cleaned_tweets
+        clean_tweets.append(tweet)
+    return clean_tweets
 
 def create_document(tweets):
     return ' '.join(tweets)
 
 def watson_analysis(request):
     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
-    prep_tweets(coin)
+    tweet_document = prep_tweets(coin)
 
-    # tone_analyzer = ToneAnalyzerV3(
-    #     version='2017-09-21',
-    #     iam_apikey=f'{config.watson_key}',
-    #     url='https://gateway.watsonplatform.net/tone-analyzer/api'
-    # )
-    #
-    # tone_analysis = tone_analyzer.tone(
-    #     {'text': tweet_document},
-    #     'application/json',
-    # ).get_result()
-    #
-    # return JsonResponse(tone_analysis, safe=False)
-    return JsonResponse(tweet_document, safe=False)
+    tone_analyzer = ToneAnalyzerV3(
+        version='2017-09-21',
+        iam_apikey=f'{config.watson_key}',
+        url='https://gateway.watsonplatform.net/tone-analyzer/api'
+    )
+
+    tone_analysis = tone_analyzer.tone(
+        {'text': tweet_document},
+        'application/json',
+    ).get_result()
+
+    return JsonResponse(tone_analysis, safe=False)
+    # return JsonResponse(tweet_document, safe=False)
