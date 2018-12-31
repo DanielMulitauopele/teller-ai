@@ -1,27 +1,20 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.generic import TemplateView
-from django.contrib import messages
 from watson_developer_cloud import ToneAnalyzerV3
 import requests
 import config
+from . import twitter_service
 
 class WelcomePageView(TemplateView):
     def get(self, request):
         return render(request, 'welcome.html')
 
-def prep_tweets(coin):
-    data = retrieve_twitter_data(coin)
+def prep_tweets_for_watson(coin):
+    data = twitter_service.retrieve_twitter_data(coin)
     tweets = extract_raw_tweets(data)
     cleaned_tweets = clean_for_watson_analysis(tweets)
     return create_document(cleaned_tweets)
-
-def retrieve_twitter_data(query):
-    url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
-    headers = {'authorization': f'Bearer {config.twitter_token}'}
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    return data['statuses']
 
 def extract_raw_tweets(statuses):
     raw_tweets = []
@@ -64,7 +57,7 @@ def analyze_tone_via_watson(document):
 
 def watson_analysis(request):
     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
-    tweet_document = prep_tweets(coin)
+    tweet_document = prep_tweets_for_watson(coin)
     tone_analysis = analyze_tone_via_watson(tweet_document)
 
     return JsonResponse(tone_analysis, safe=False)
