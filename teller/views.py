@@ -12,7 +12,7 @@ class WelcomePageView(TemplateView):
 
 def prep_tweets(coin):
     data = retrieve_twitter_data(coin)
-    tweets = retrieve_raw_tweets(data)
+    tweets = extract_raw_tweets(data)
     cleaned_tweets = clean_for_watson_analysis(tweets)
     return create_document(cleaned_tweets)
 
@@ -23,7 +23,7 @@ def retrieve_twitter_data(query):
     data = response.json()
     return data['statuses']
 
-def retrieve_raw_tweets(statuses):
+def extract_raw_tweets(statuses):
     raw_tweets = []
     for status_info in statuses:
         raw_tweets.append(status_info['text'])
@@ -49,20 +49,20 @@ def clean_for_watson_analysis(tweets):
 def create_document(tweets):
     return ' '.join(tweets)
 
-def watson_analysis(request):
-    coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
-    tweet_document = prep_tweets(coin)
+# def watson_analysis(request):
+#     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
+#     tweet_document = prep_tweets(coin)
+#
+#     tone_analyzer = ToneAnalyzerV3(
+#         version='2017-09-21',
+#         iam_apikey=f'{config.watson_key}',
+#         url='https://gateway.watsonplatform.net/tone-analyzer/api'
+#     )
+#
+#     tone_analysis = tone_analyzer.tone(
+#         {'text': tweet_document},
+#         'application/json',
+#     ).get_result()
 
-    tone_analyzer = ToneAnalyzerV3(
-        version='2017-09-21',
-        iam_apikey=f'{config.watson_key}',
-        url='https://gateway.watsonplatform.net/tone-analyzer/api'
-    )
-
-    tone_analysis = tone_analyzer.tone(
-        {'text': tweet_document},
-        'application/json',
-    ).get_result()
-
-    return JsonResponse(tone_analysis, safe=False)
+    # return JsonResponse(tone_analysis, safe=False)
     # return JsonResponse(tweet_document, safe=False)
