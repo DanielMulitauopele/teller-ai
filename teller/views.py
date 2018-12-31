@@ -38,25 +38,14 @@ def clean_for_watson_analysis(tweets):
         cleaned_tweets.append(tweet)
     return cleaned_tweets
 
+def create_document(tweets):
+    return ' '.join(tweets)
+
 def watson_analysis(request):
     coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
     tweets = retrieve_tweets(coin)
     cleaned_tweets = clean_for_watson_analysis(tweets)
-    # cleaned_tweets = []
-    # for tweet in tweets:
-    # # CLEAN TWEET CONTRACTIONS
-    #     contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
-    #     poss_contractions = tweet.replace("'", " '").split(" ")
-    #     for poss_contraction in poss_contractions:
-    #         non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
-    #
-    #         # CLEAN @TWITTERHANDLE & URLS
-    #         sentance = " ".join([word for word in non_contraction if 'http' not in word and '@' not in word])
-    #         # CLEAN HASHTAGS
-    #         tweet = sentance.replace("#", "")
-    #
-    #     cleaned_tweets.append(tweet)
-    tweet_document = ' '.join(cleaned_tweets)
+    tweet_document = create_document(cleaned_tweets)
 
     # tone_analyzer = ToneAnalyzerV3(
     #     version='2017-09-21',
@@ -70,4 +59,4 @@ def watson_analysis(request):
     # ).get_result()
     #
     # return JsonResponse(tone_analysis, safe=False)
-    return JsonResponse(cleaned_tweets, safe=False)
+    return JsonResponse(tweet_document, safe=False)
