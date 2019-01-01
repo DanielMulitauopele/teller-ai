@@ -2,17 +2,10 @@ import requests
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-<<<<<<< HEAD
-import requests
-import config
-from . import tweet_prep
-from . import tone_analysis
-=======
 
 import config
 from . import tone_analysis, tweet_prep
 
->>>>>>> refactor_watson_sentiment_analysis
 
 class WelcomePageView(TemplateView):
     def get(self, request):
