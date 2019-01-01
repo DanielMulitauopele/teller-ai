@@ -31,3 +31,11 @@ class TweetPrepTestCase(TestCase):
         expected = ["The dogecoin market makes this exchanger fabulous January 01, 2019 at 04:45PM $BTC $LTC $USDT $DASH $DOGE $ETH $BCH https://t.co/Ixqd2BHu7B",
                    "RT @cryptoknocks: BTC-DOGE AskRate: 0.00000063 #Bittrex  #DOGE $DOGE #Dogecoin #altcoin #altcoins #cryptocurrencies\n ♥ FOLLOW for PROFIT"]
         self.assertEqual(actual, expected)
+
+
+    def create_document(self):
+        tweet_arr = ["The dogecoin market makes this exchanger fabulous January 01, 2019 at 04:45PM $BTC $LTC $USDT $DASH $DOGE $ETH $BCH https://t.co/Ixqd2BHu7B",
+                    "RT @cryptoknocks: BTC-DOGE AskRate: 0.00000063 #Bittrex  #DOGE $DOGE #Dogecoin #altcoin #altcoins #cryptocurrencies\n ♥ FOLLOW for PROFIT"]
+        actual = tweet_prep.create_document(tweet_arr)
+        expected = "The dogecoin market makes this exchanger fabulous January 01, 2019 at 04:45PM $BTC $LTC $USDT $DASH $DOGE $ETH $BCH https://t.co/Ixqd2BHu7B RT @cryptoknocks: BTC-DOGE AskRate: 0.00000063 #Bittrex  #DOGE $DOGE #Dogecoin #altcoin #altcoins #cryptocurrencies\n ♥ FOLLOW for PROFIT"
+        self.assertEqual(actual, expected)
