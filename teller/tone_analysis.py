@@ -1,6 +1,8 @@
-from django.http import JsonResponse
-from watson_developer_cloud import ToneAnalyzerV3
 import requests
+from django.http import JsonResponse
+
+from watson_developer_cloud import ToneAnalyzerV3
+
 import config
 
 def analyze_tone_via_watson(document):

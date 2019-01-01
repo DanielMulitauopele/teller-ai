@@ -1,5 +1,6 @@
-from django.http import JsonResponse
 import requests
+from django.http import JsonResponse
+
 import config
 
 def retrieve_twitter_data(query):
