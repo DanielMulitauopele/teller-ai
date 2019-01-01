@@ -1,9 +1,3 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.generic import TemplateView
-from watson_developer_cloud import ToneAnalyzerV3
-import requests
-import config
 from . import twitter_service
 
 def prep_for_watson(coin):
