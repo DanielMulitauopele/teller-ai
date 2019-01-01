@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'teller',
-    'django_nose'
+    'django_nose',
+    'rest_framework'
 ]
 # Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -48,6 +49,11 @@ NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=teller',
 ]
+# Global settings for REST framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
