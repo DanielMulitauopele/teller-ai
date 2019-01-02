@@ -1,1 +1,1 @@
-web: gunicorn teller_ai.wsgi --log-file -
+web: gunicorn tellerai.wsgi
