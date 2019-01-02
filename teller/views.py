@@ -1,44 +1,19 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from watson_developer_cloud import ToneAnalyzerV3
 import requests
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.generic import TemplateView
+
 import config
+from . import tone_analysis, tweet_prep
 
-def home(request):
-    query = 'bitcoin'
-    url = f'https://api.twitter.com/1.1/search/tweets.json?q={query}&lang=en&count=100&result_type=recent'
-    headers = {'authorization': f'Bearer {config.twitter_token}'}
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    statuses = data['statuses']
-    tweets = []
-    for status_info in statuses:
-        tweets.append(status_info['text'])
 
-    cleaned_tweets = []
-    for tweet in tweets:
-    # CLEAN TWEET CONTRACTIONS
-        contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
-        poss_contractions = tweet.replace("'", " '").split(" ")
-        for poss_contraction in poss_contractions:
-            non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
+class WelcomePageView(TemplateView):
+    def get(self, request):
+        return render(request, 'welcome.html')
 
-            # CLEAN @TWITTERHANDLE & URLS
-            sentance = " ".join([word for word in non_contraction if 'http' not in word and '@' not in word])
-            # CLEAN HASHTAGS
-            tweet = sentance.replace("#", "")
+def get_watson_analysis(request):
+    coin = request.GET.get('coin') # Either returns the query param value, or returns "None"
+    tweet_document = tweet_prep.prep_for_watson(coin)
+    watson_tone_analysis = tone_analysis.analyze_tone_via_watson(tweet_document)
 
-        cleaned_tweets.append(tweet)
-    tweet_document = ' '.join(cleaned_tweets)
-
-    tone_analyzer = ToneAnalyzerV3(
-        version='2017-09-21',
-        iam_apikey=f'{config.watson_key}',
-        url='https://gateway.watsonplatform.net/tone-analyzer/api'
-    )
-
-    tone_analysis = tone_analyzer.tone(
-        {'text': tweet_document},
-        'application/json',
-    ).get_result()
-    return JsonResponse(tone_analysis, safe=False)
+    return JsonResponse(watson_tone_analysis, safe=False)
