@@ -17,7 +17,8 @@ def clean_for_watson_analysis(tweets):
     for tweet in tweets:
     # CLEAN TWEET CONTRACTIONS
         contractions = {"'s":"is", "'re":"are", "'ve":"have", "'nt":"not", "'d":"would", "'m":"am", "'ll":"will"}
-        poss_contractions = tweet.replace("'", " '").split(" ")
+        nt_removed_tweet = tweet.replace("n't", " not")
+        poss_contractions = nt_removed_tweet.replace("'", " '").split(" ")
         for poss_contraction in poss_contractions:
             non_contraction = [contractions[poss_contraction] if poss_contraction in contractions else poss_contraction for poss_contraction in poss_contractions]
 
