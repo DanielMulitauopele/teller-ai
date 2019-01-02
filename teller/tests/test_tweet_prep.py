@@ -32,8 +32,15 @@ class TweetPrepTestCase(TestCase):
                    "RT @cryptoknocks: BTC-DOGE AskRate: 0.00000063 #Bittrex  #DOGE $DOGE #Dogecoin #altcoin #altcoins #cryptocurrencies\n ♥ FOLLOW for PROFIT"]
         self.assertEqual(actual, expected)
 
+    def test_clean_tweets(self):
+        tweets = ["@tacocat wow I'm amazed you'll love the cats on https://http.cat/ and how couldn't you love the dogs on https://httpstatusdogs.com/ They're so cute! You'll learn status codes in no time #cats #dogs #catdogequality",
+                 "@tacocat wow I'm amazed you'll love the cats on https://http.cat/ and how couldn't you love the dogs on https://httpstatusdogs.com/ They're so cute! You'll learn status codes in no time #cats #dogs #catdogequality"]
+        actual = tweet_prep.clean_for_watson_analysis(tweets)
+        expected = ['wow I am amazed you will love the cats on and how could not you love the dogs on They are so cute! You will learn status codes in no time cats dogs catdogequality',
+                    'wow I am amazed you will love the cats on and how could not you love the dogs on They are so cute! You will learn status codes in no time cats dogs catdogequality']
+        self.assertEqual(actual, expected)
 
-    def create_document(self):
+    def test_create_document(self):
         tweet_arr = ["The dogecoin market makes this exchanger fabulous January 01, 2019 at 04:45PM $BTC $LTC $USDT $DASH $DOGE $ETH $BCH https://t.co/Ixqd2BHu7B",
                     "RT @cryptoknocks: BTC-DOGE AskRate: 0.00000063 #Bittrex  #DOGE $DOGE #Dogecoin #altcoin #altcoins #cryptocurrencies\n ♥ FOLLOW for PROFIT"]
         actual = tweet_prep.create_document(tweet_arr)
