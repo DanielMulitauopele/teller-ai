@@ -25,7 +25,7 @@ SECRET_KEY = '448q)*p3(5mca(z-#(t@x6q3g4%(*@wjo$ip_gmvfaiqjyj_$5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['beta-teller-ai.herokuapp.com','teller-ai.herokuapp.com']
 
 
 # Application definition
