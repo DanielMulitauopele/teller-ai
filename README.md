@@ -1,5 +1,6 @@
 # Teller AI
 Module 4 | Team: Autumn Martin, Daniel Mulitauopele, Dina Caraballo, Nick Dambrosio
+Cross-Pollination Capstone: a project where back-end and front-end students collaborate and build an app together. This app encompasses separate back-end and front-end apps that communicate to each other via API requests.
 
 ## About
 ### Intro
