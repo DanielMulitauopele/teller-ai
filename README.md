@@ -11,7 +11,7 @@ Teller AI is deployed [here](https://teller-ai.herokuapp.com/).
 ### Background
 Teller AI is a Python Django API. It consumes tweet data from [Twitter](https://developer.twitter.com/en/docs.html) and accesses [Watson Sentiment Analysis](https://console.bluemix.net/docs/services/tone-analyzer/index.html#about) to analyze tweets.
 
-Teller AI is a microservice for our Teller project, which also includes a Ruby on Rails back-end, [Teller Api](https://teller-api.herokuapp.com/), and a React front-end, [Teller](https://teller-app.herokuapp.com/).
+Teller AI is a microservice for our Teller project, which also includes a Ruby on Rails back-end, [Teller Api](https://teller-api.herokuapp.com/), and a React front-end, [Teller](https://teller.netlify.com/).
 
 ### Tech Stack
 Python 3.7.1, Django 2.1.4, Heroku, Django-Nose testing
@@ -19,7 +19,7 @@ Python 3.7.1, Django 2.1.4, Heroku, Django-Nose testing
 ### Relevant Links
 ##### [Deployed App](https://teller-ai.herokuapp.com/)
 
-##### Teller (Front-End) [GitHub](https://github.com/DanielMulitauopele/teller) | [Heroku](https://teller-app.herokuapp.com/)
+##### Teller (Front-End) [GitHub](https://github.com/DanielMulitauopele/teller) | [Heroku](https://teller.netlify.com/)
 
 ##### Teller API (Back-End) [GitHub](https://github.com/DanielMulitauopele/teller-api) | [Heroku](https://teller-api.herokuapp.com/)
 
