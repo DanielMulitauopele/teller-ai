@@ -1,6 +1,6 @@
 # Teller AI
 Module 4 | Team: Autumn Martin, Daniel Mulitauopele, Dina Caraballo, Nick Dambrosio
-#### Cross-Pollination Capstone: a project where back-end and front-end students collaborate and build an app together. This app encompasses separate back-end and front-end apps that communicate to each other via API requests.
+Cross-Pollination Capstone: a project where back-end and front-end students collaborate and build an app together. This app encompasses separate back-end and front-end apps that communicate to each other via API requests.
 
 ## About
 ### Intro
@@ -34,40 +34,7 @@ GET /teller/watson_analysis?coin=dogecoin
 
 Example Response:
 ```
-{
-  "document_tone": {
-    "tones": [{
-      "score": 0.638346,
-      "tone_id": "joy",
-      "tone_name": "Joy"
-    }]
-  },
-  "sentences_tone": [{
-    "sentence_id": 0,
-    "text": "Happy New Year Dogecoin!"
-    "tones": [{
-      "score": 0.591348,
-      "tone_id": "joy",
-      "tone_name": "Joy"
-    }]
-  }, {
-    "sentence_id": 1,
-    "text": "Hopefully this year is just as stellar for dogecoin as the last."
-    "tones": [{
-      "score": 0.983475,
-      "tone_id": "tentative",
-      "tone_name": "Tentative"
-    }]
-  }, {
-    "sentence_id": 1,
-    "text": "Wow Dogecoin is just amazing!"
-    "tones": [{
-      "score": 0.967505,
-      "tone_id": "joy",
-      "tone_name": "Joy"
-    }]
-  }
-}
+{ "document_tones": ["joy", "tentative"] }
 ```
 
 ## Getting Started
