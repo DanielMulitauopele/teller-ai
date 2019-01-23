@@ -15,4 +15,8 @@ def analyze_tone_via_watson(document):
                 {'text': document},
                 'application/json',
             ).get_result()
-    return result
+    tone_names = []
+    raw_tones = result['document_tone']['tones']
+    for raw_tone in raw_tones:
+        tone_names.append(raw_tone['tone_id'])
+    return { 'document_tones': tone_names }
