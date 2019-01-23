@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from . import views
+
 urlpatterns = [
     path('teller/', include('teller.urls')),
+    path('', views.WelcomePageView.as_view()),
     path('admin/', admin.site.urls),
 ]
