@@ -1,1 +1,29 @@
-Welcome to Teller's Python API!
+{% extends 'application.html' %}
+{% block content %}
+<h3>Welcome to Teller's Python API!</h3>
+<div class='about-container container'>
+  <h2>About</h2>
+  <p>
+    Would you like to find out the most recent attitudes towards a particular
+    cryptocurrency? Teller AI is a Python Django API that retrieves relevant
+    tweets from Twitter, and runs Watson sentiment analysis to discover sentiment
+    towards a coin. Teller AI is a microservice for our Teller project, which
+    also includes a Ruby on Rails backend, Teller Api, and a React frontend,
+    Teller.
+  </p>
+</div>
+<div class='example-container container'>
+  <h2 class='endpoint-label'>Sentiment Analysis Endpoint</h2>
+  <hr width="12%" color="#FC599E">
+  <h3 class='endpoint-label'>Get /teller/watson_analysis?coin=#{search_params}</h3>
+    </br>
+    <div>
+      <p>Example Request:</p>
+      <p>GET https://teller-ai.herokuapp.com/teller/watson_analysis?coin=dogecoin</p>
+    </div>
+    <div>
+      <p>Example Response:</p>
+      <p>{ "document_tones": ["joy", "tentative"] }</p>
+    </div>
+</div>
+{% endblock %}
