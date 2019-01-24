@@ -2,6 +2,7 @@ body {
   background: #303859;
   color: #FEFEFE;
   text-align: center;
+  margin: 2% 5% 2% 5%;
 }
 h1 {
   font-size: 32px;
@@ -17,5 +18,7 @@ header {
   font-size: 38px;
 }
 .container {
-  background: #303859;
+  background: #3D476D;
+  margin: 5%;
+  padding: 2%;
 }
