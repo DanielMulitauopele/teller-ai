@@ -35,7 +35,10 @@ div {
   padding: 5%;
 }
 .example-container {
+  border: 2px solid #FC599E;
+  text-align: left;
 }
 .endpoint-label {
   color: #FC599E;
+  padding: 2%;
 }
