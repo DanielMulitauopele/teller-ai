@@ -138,9 +138,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, './teller/static'),
 )
 
-# Configure Django app for Heroku
+# Configure Django app for Her
 # https://github.com/heroku/django-heroku
 django_heroku.settings(locals())
