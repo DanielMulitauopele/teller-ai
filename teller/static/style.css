@@ -31,14 +31,11 @@ div {
 }
 .about-container {
   background: #3D476D;
-  margin: 5%;
-  padding: 5%;
 }
 .example-container {
-  border: 2px solid #FC599E;
   text-align: left;
 }
 .endpoint-label {
   color: #FC599E;
-  padding: 2%;
+  text-align: center;
 }
