@@ -1,6 +1,8 @@
 # Teller AI
 Module 4 | Team: Autumn Martin, Daniel Mulitauopele, Dina Caraballo, Nick Dambrosio
-#### Cross-Pollination Capstone: a project where back-end and front-end students collaborate and build an app together. This project encompasses separate back-end and front-end apps that communicate to each other via API requests.
+#### Cross-Pollination Capstone: a project where backend and frontend students collaborate and build an app together. This project encompasses separate backend and frontend apps that communicate to each other via API requests.
+
+<img width="1050" alt="screen shot 2019-01-23 at 10 11 27 pm" src="https://user-images.githubusercontent.com/36902512/51655922-02722c80-1f5c-11e9-869d-e8ffba6b9b81.png">
 
 ## About
 ### Intro
@@ -11,7 +13,7 @@ Teller AI is deployed [here](https://teller-ai.herokuapp.com/).
 ### Background
 Teller AI is a Python Django API. It consumes tweet data from [Twitter](https://developer.twitter.com/en/docs.html) and accesses [Watson Sentiment Analysis](https://console.bluemix.net/docs/services/tone-analyzer/index.html#about) to analyze tweets.
 
-Teller AI is a microservice for our Teller project, which also includes a Ruby on Rails back-end, [Teller Api](https://teller-api.herokuapp.com/), and a React front-end, [Teller](https://teller.netlify.com/).
+Teller AI is a microservice for our Teller project, which also includes a Ruby on Rails backend, [Teller Api](https://teller-api.herokuapp.com/), and a React frontend, [Teller](https://teller.netlify.com/).
 
 ### Tech Stack
 Python 3.7.1, Django 2.1.4, Heroku, Django-Nose testing
