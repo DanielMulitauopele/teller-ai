@@ -4,12 +4,16 @@ body {
   font-family: 'Josefin Sans';
   text-align: center;
   margin: 2% 5% 2% 5%;
+  line-height: 1.5em;
 }
 h1 {
   font-size: 32px;
 }
 h2 {
   font-size: 24px;
+}
+h3 {
+  font-size: 20px;
 }
 p {
   font-size: 18px;
@@ -18,8 +22,14 @@ header {
   color: #FC599E;
   font-size: 38px;
 }
+div {
+  padding: 1%;
+}
 .container {
   background: #3D476D;
   margin: 5%;
   padding: 2%;
+}
+.endpoint-label {
+  color: #FC599E;
 }
