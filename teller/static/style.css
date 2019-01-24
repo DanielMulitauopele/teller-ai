@@ -1,3 +1,21 @@
 body {
-  background: aquamarine;
+  background: #303859;
+  color: #FEFEFE;
+  text-align: center;
+}
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 24px;
+}
+p {
+  font-size: 18px;
+}
+header {
+  color: #FC599E;
+  font-size: 38px;
+}
+.container {
+  background: #303859;
 }
