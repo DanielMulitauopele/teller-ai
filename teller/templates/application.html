@@ -1,0 +1,20 @@
+<html>
+  <head>
+    {% block title %}<title>Teller AI</title>{% endblock %}
+    <meta charset='utf-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href='{% static 'reset.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'style.css' %}'/>
+  </head>
+  <body>
+    <header class='nav'>
+      Teller AI
+    </header>
+    <div class='app'>
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
