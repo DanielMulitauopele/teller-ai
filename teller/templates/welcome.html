@@ -1,7 +1,7 @@
 {% extends 'application.html' %}
 {% block content %}
-<p>Welcome to Teller's Python API!</p>
-<div class='container'>
+<h3>Welcome to Teller's Python API!</h3>
+<div class='about-container container'>
   <h2>About</h2>
   <p>
     Would you like to find out the most recent attitudes towards a particular
@@ -11,15 +11,19 @@
     also includes a Ruby on Rails back-end, Teller Api, and a React front-end,
     Teller.
   </p>
-</div>
-<h2>Sentiment Analysis Endpoint</h2>
-<h3>Get /teller/watson_analysis?coin=#{search_params}</h3>
-<div>
-  <p>Example Request:</p>
-  <p>GET /teller/watson_analysis?coin=dogecoin</p>
-</div>
-<div>
-  <p>Example Response:</p>
-  <p>{ "document_tones": ["joy", "tentative"] }</p>
+  </div>
+<div class='container'>
+  <h2 class='endpoint-label'>Sentiment Analysis Endpoint</h2>
+  <h3>Get /teller/watson_analysis?coin=#{search_params}</h3>
+  <div class='example-container container'>
+    <div>
+      <p>Example Request:</p>
+      <p>GET /teller/watson_analysis?coin=dogecoin</p>
+    </div>
+    <div>
+      <p>Example Response:</p>
+      <p>{ "document_tones": ["joy", "tentative"] }</p>
+    </div>
+  </div>
 </div>
 {% endblock %}

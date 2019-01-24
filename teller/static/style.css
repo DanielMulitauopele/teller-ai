@@ -26,9 +26,15 @@ div {
   padding: 1%;
 }
 .container {
+  margin: 5%;
+  padding: 5%;
+}
+.about-container {
   background: #3D476D;
   margin: 5%;
-  padding: 2%;
+  padding: 5%;
+}
+.example-container {
 }
 .endpoint-label {
   color: #FC599E;
