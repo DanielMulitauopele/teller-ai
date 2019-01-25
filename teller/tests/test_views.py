@@ -17,3 +17,7 @@ class GetWelcomePage(TestCase):
         response = client.get(reverse('welcome'))
 
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'welcome.html')
+        self.assertContains(response, "Teller AI")
+        self.assertContains(response, "GET https://teller-ai.herokuapp.com/teller/watson_analysis?coin=dogecoin")
+        self.assertContains(response, '{ "document_tones": ["joy", "tentative"] }')
