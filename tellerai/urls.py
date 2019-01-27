@@ -20,6 +20,6 @@ from . import views
 
 urlpatterns = [
     path('teller/', include('teller.urls')),
-    path('', views.WelcomePageView.as_view()),
+    path('', views.WelcomePageView.as_view(), name='welcome'),
     path('admin/', admin.site.urls),
 ]
